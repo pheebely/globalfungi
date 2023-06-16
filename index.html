@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Global fungi</title>
+        <title>Global Fungi 🍄</title>
 
         <!-- CSS Stylesheet -->
         <link rel="stylesheet" href="style.css"> 
@@ -15,24 +15,50 @@
             integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
             crossorigin=""></script>
 
+        <!-- Maptiler -->
+        <script src="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.umd.js"></script>
+        <link href="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.css" rel="stylesheet" />
+        <script src="https://cdn.maptiler.com/leaflet-maptilersdk/latest/leaflet-maptilersdk.js"></script>
+
         <!-- D3 -->
         <script src="https://d3js.org/d3.v7.min.js"></script>
 
-        <script src="d3.js"></script>
 
     </head>
 
     <body>
-        <div id="map">
-        <script>
-            var map = L.map('map').setView([48.138666, 11.575366], 5);
-    
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
+        <!-- <script src="d3.js"></script> -->
+
+        <div class="container">
+            <!-- <div id="map">
+            <script>
+                // var map = L.map('map').setView([48.138666, 11.575366], 5);
+        
+                // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                // maxZoom: 18,
+                // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Imagery &copy; <a href=&quot;https://www.mapbox.com/&quot;>Mapbox</a>'
+                // }).addTo(map);
+
+                const key = 'HSFYhxikAmTFWmRDoLeS';
+                const map = L.map('map').setView([48.138666, 11.575366], 5);
+                const mtLayer = L.maptilerLayer({
+                apiKey: key,
+                style: "https://api.maptiler.com/maps/f7cf6abe-9c77-42d0-93b0-3106db0f53f3/style.json?key=HSFYhxikAmTFWmRDoLeS", // optional
             }).addTo(map);
-    
-        </script>
+        
+            </script>
+            </div> -->
+
+            <div id="d3_hist">
+                <script src="d3_hist.js"></script>
+
+            </div>
+
+            <!-- <div id="d3_scatterplot">
+                <script src="d3_scatterplot.js"></script>
+
+            </div> -->
+
         </div>
     </body>
 </html>
