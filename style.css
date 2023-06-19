@@ -1,4 +1,4 @@
-#map { height: 98vh; width: 100%;
+#map { height: 90vh; width: 100%;
 margin: none;
  }
 
@@ -8,10 +8,36 @@ margin: none;
    height: 100vh;
  }
 
- /* .container {
+ .topbar {
+  display: block;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  color: rgb(0, 0, 0);
+  background-image: url("./svg/mariomushroom.svg");
+  background-repeat: repeat-x;
+  z-index: 1;
+ }
+
+ .topbar h1{
+  text-align: center;
+  margin: 0;
+  padding-top: 5px;
+  font-family: 'VT323', monospace;
+  font-size: 36px;
+  letter-spacing: 5px;
+  word-spacing: 5px;
+  text-shadow: 2px 2px 0 white; /* offset-x | offset-y | blur-radius | color */
+ }
+
+ .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    column-gap: 10px;
+    column-gap: 30px;
+ }
+
+ /* .container {
+display: block;
  } */
