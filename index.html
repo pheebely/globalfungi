@@ -7,10 +7,7 @@
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-
-        <!-- CSS Stylesheet -->
-        <link rel="stylesheet" href="style.css"> 
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700;800&family=VT323&display=swap" rel="stylesheet">
 
         <!-- Leaflet -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
@@ -20,17 +17,23 @@
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
             integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
             crossorigin=""></script>
-        <!-- Proj4Leaflet -->
-         <script src="proj4.js"></script>
-        <script src="proj4leaflet.js"></script>
+
+            <script src="/leaflet.ajax.js"></script>
+            <!-- wms legend plugin -->
+        <link rel="stylesheet" href="leaflet.wmslegend.css"/>
+
+
+
         <!-- Maptiler -->
-        <script src="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.umd.js"></script>
         <link href="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.css" rel="stylesheet" />
+        <script src="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.umd.js"></script>
         <script src="https://cdn.maptiler.com/leaflet-maptilersdk/latest/leaflet-maptilersdk.js"></script>
 
         <!-- D3 -->
         <script src="https://d3js.org/d3.v7.min.js"></script>
 
+        <!-- CSS Stylesheet -->
+        <link rel="stylesheet" href="style.css"> 
 
     </head>
 
@@ -40,13 +43,24 @@
         </div>
 
         <div class="container">
-            <div id="map">
-            <script src="leaftlet.js"></script>
-            </div>
-
+            <h1>General Statistics of Global Fungi Database</h1>
             <div id="d3_hist">
                 <script src="d3_hist.js"></script>
             </div>
+            <h1>Map Visualisations for Amanita muscaria</h1>
+
+            <div id="map">
+
+            <!-- Proj4Leaflet -->
+            <script src="proj4-compressed.js"></script>
+            <script src="proj4leaflet.js"></script>
+            <script src="leaflet.wmslegend.js"></script>
+
+            <script src="script.js"></script>
+
+            </div>
+
+
 
             <!-- <div id="d3_scatterplot">
                 <script src="d3_scatterplot.js"></script>
