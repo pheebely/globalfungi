@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 const margin = { top: 30, right: 30, bottom: 80, left: 85 },
   width = 460 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+  height = 500 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3
@@ -15,28 +15,30 @@ const svg = d3
 // Parse the Data
 
 //convert strings that are numbers back to numbers by adding a + in the front
-const parseRow = (d) => {
-  d.id = +d.id;
-  d.longitude = +d.longitude;
-  d.latitude = +d.latitude;
-  d.ITS1_extracted = +d.ITS1_extracted;
-  d.ITS2_extracted = +d.ITS2_extracted;
-  d.ITS_total = +d.ITS_total;
-  d.pH = +d.pH;
-  d.year_start = +d.year_start;
-  d.end = +d.year_end;
-  d.MAT = +d.MAT;
-  d.MAP = +d.MAP;
-  return d;
-};
+// const parseRow = (d) => {
+//   d.id = +d.id;
+//   d.longitude = +d.longitude;
+//   d.latitude = +d.latitude;
+//   d.ITS1_extracted = +d.ITS1_extracted;
+//   d.ITS2_extracted = +d.ITS2_extracted;
+//   d.ITS_total = +d.ITS_total;
+//   d.pH = +d.pH;
+//   d.year_start = +d.year_start;
+//   d.end = +d.year_end;
+//   d.MAT = +d.MAT;
+//   d.MAP = +d.MAP;
+//   return d;
+// };
 
-const csvdata =
-  "https://raw.githubusercontent.com/pheebely/globalfungi/main/globalfungi_merged.csv";
+// const csvdata =
+//   "https://raw.githubusercontent.com/pheebely/globalfungi/main/globalfungi_merged.csv";
 // d3.csv(csvdata, parseRow).then(function (data) {
 //   console.log(data);
 
 // Number of samples per continent
-d3.json("continents.json").then(function (data) {
+d3.json(
+  "https://raw.githubusercontent.com/pheebely/globalfungi/main/continents.json"
+).then(function (data) {
   // console.log(data);
 
   // X axis
@@ -74,7 +76,7 @@ d3.json("continents.json").then(function (data) {
     .attr("y", (d) => y(d.total))
     .attr("width", x.bandwidth())
     .attr("height", (d) => height - y(d.total))
-    .attr("fill", "#69b3a2")
+    .attr("fill", "#45c9fe")
     .style("opacity", 0.7)
     .append("title")
     .text(function (d) {
@@ -92,7 +94,7 @@ d3.json("continents.json").then(function (data) {
   //To-do: add function for showing total number when hover
   // create a tooltip
   // const tip = d3
-  //   .select("d3_hist")
+  //   .select("d3_hist_item")
   //   .append("div")
   //   .attr("class", "tooltip")
   //   .style("opacity", 0);

@@ -1,3 +1,8 @@
+// set the dimensions and marginSPs of the graph
+const marginSP = { top: 10, right: 35, bottom: 90, left: 75 },
+  widthSP = 560 - marginSP.left - marginSP.right,
+  heightSP = 600 - marginSP.top - marginSP.bottom;
+
 const { csv, select, scaleLinear, extent, axisLeft, axisBottom } = d3; //same as const csv = d3.csv, so we dont need to keep repeating d3.
 
 const csvdata =
@@ -19,23 +24,13 @@ const parseRow = (d) => {
 };
 
 //function that takes as input one row and give back some value from the data we should use
-const xValue = (d) => d.longitude;
-const yValue = (d) => d.latitude;
+const xValue = (d) => d.MAT;
+const yValue = (d) => d.MAP;
 
-const margin = {
-  top: 100,
-  right: 20,
-  bottom: 20,
-  left: 50,
-};
-
-const width = window.innerWidth;
-const height = window.innerHeight;
-
-const svg = select("body")
+const svgSP = select("#d3_scatter")
   .append("svg")
-  .attr("width", width)
-  .attr("height", height);
+  .attr("width", widthSP + marginSP.left + marginSP.right)
+  .attr("height", heightSP + marginSP.top + marginSP.bottom);
 
 const main = async () => {
   //using this modern syntax for REQUEST and PROMISE of data
@@ -43,12 +38,12 @@ const main = async () => {
 
   const x = scaleLinear() //checks each and every row of the dataset and returns min and max
     .domain(extent(data, xValue)) //extent gets both min and max at the same time
-    .range([margin.left, width - margin.right]); //range for x scale in svg
+    .range([marginSP.left, widthSP - marginSP.right]); //range for x scale in svg
   console.log(x.range());
   //output with be an array
   const y = scaleLinear() //checks each and every row of the dataset and returns min and max
     .domain(extent(data, yValue)) //extent gets both min and max at the same time
-    .range([height - margin.bottom, margin.top]); //flipped this because we want lowest y value at the bottom
+    .range([heightSP - marginSP.bottom, marginSP.top]); //flipped this because we want lowest y value at the bottom
   //   console.log(y.range());
   //output with be an array
 
@@ -58,24 +53,41 @@ const main = async () => {
   }));
   //   console.log(marks);
 
-  svg
+  svgSP
     .selectAll("circle")
     .data(marks)
     .join("circle")
     .attr("cx", (d) => d.x)
     .attr("cy", (d) => d.y)
-    .attr("r", 3);
+    .attr("r", 1.5)
+    .style("fill", "#f8bf0f") //c54a2f
+    .style("opacity", "0.2");
 
   //Create axes. The axes scale is the same as the scale used for the circles so it lines up perfectly.
-  svg
+  svgSP
     .append("g")
-    .attr("transform", `translate(${margin.left},0)`)
+    .attr("transform", `translate(${marginSP.left},0)`)
     .call(axisLeft(y));
 
-  svg
+  svgSP
+    .append("text")
+    .attr("text-anchor", "end")
+    .attr("transform", "rotate(-90)")
+    .attr("y", marginSP.left - 60)
+    .attr("x", -heightSP / 2 + marginSP.bottom)
+    .text("Mean Precipitation (mm)");
+
+  svgSP
     .append("g")
-    .attr("transform", `translate(0, ${height - margin.bottom})`)
+    .attr("transform", `translate(0, ${heightSP - marginSP.bottom})`)
     .call(axisBottom(x));
+
+  svgSP
+    .append("text")
+    .attr("text-anchor", "end")
+    .attr("x", widthSP - 150)
+    .attr("y", heightSP - marginSP.top)
+    .text("Mean Temperature (c)");
 
   console.log(data);
 };

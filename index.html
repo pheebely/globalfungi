@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Global Fungi 🍄</title>
+        <title>GlobalFungi 🍄</title>
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,9 +18,14 @@
             integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
             crossorigin=""></script>
 
-            <script src="/leaflet.ajax.js"></script>
+        <script src="./plugins/leaflet.ajax.js"></script>
             <!-- wms legend plugin -->
-        <link rel="stylesheet" href="leaflet.wmslegend.css"/>
+        <link rel="stylesheet" href="./plugins/leaflet.wmslegend.css"/>
+        <script src="./plugins/leaflet.wmslegend.js"></script>
+
+        <!-- Proj4Leaflet -->
+        <script src="./plugins/proj4-compressed.js"></script>
+        <script src="./plugins/proj4leaflet.js"></script>
 
 
 
@@ -39,22 +44,33 @@
 
     <body>
         <div class="topbar">
-            <h1>GLOBAL FUNGI</h1>
+            <h1>GlobalFungi</h1>
         </div>
 
         <div class="container">
-            <h1>General Statistics of Global Fungi Database</h1>
-            <div id="d3_hist">
-                <script src="d3_hist.js"></script>
+            <h1>General Statistics of GlobalFungi Database</h1>
+            <div id="d3_items">
+                <div id="d3_hist">                
+                    <script src="./d3/d3_hist.js"></script>
+                    <p>                    <br><br>
+                        GlobalFungi dataset release 4 (20.7.2021). <br>
+                        Taxonomy based on UNITE version 8.2 (4.2.2020).<br>
+                        Actual number of samples in the database: 57184;<br>
+                        Actual number of studies included: 515.</p>
+
+                </div>
+                <div id="d3_scatter">
+                    <script src="./d3/d3_scatterplot.js"></script>
+                </div>
+                <div id="d3_plot">
+                    <script src="./d3/d3_scatterplot2.js"></script>
+                </div>
+                
             </div>
             <h1>Map Visualisations for Amanita muscaria</h1>
 
             <div id="map">
 
-            <!-- Proj4Leaflet -->
-            <script src="proj4-compressed.js"></script>
-            <script src="proj4leaflet.js"></script>
-            <script src="leaflet.wmslegend.js"></script>
 
             <script src="script.js"></script>
 

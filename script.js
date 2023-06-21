@@ -46,19 +46,22 @@ const globalfungiwms = L.tileLayer.wms("http://localhost:8080/geoserver/wms/", {
 
 const amusMarker = {
   radius: 4,
-  fillColor: "#f81934",
+  fillColor: "#c54a2f",
   color: "#fff",
   weight: 1,
   opacity: 1,
   fillOpacity: 0.8,
 };
 
-const amus = new L.GeoJSON.AJAX("amanita_muscaria.geojson", {
-  pointToLayer: function (feature, latlng) {
-    return L.circleMarker(latlng, amusMarker);
-  },
-  onEachFeature: onEachFeature,
-});
+const amus = new L.GeoJSON.AJAX(
+  "https://raw.githubusercontent.com/pheebely/globalfungi/main/amanita_muscaria.geojson",
+  {
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng, amusMarker);
+    },
+    onEachFeature: onEachFeature,
+  }
+);
 
 // Add pop up for each point feature
 function onEachFeature(feature, layer) {
@@ -101,8 +104,6 @@ const map = new L.map("map", {
   // crs: crs,
   minZoom: 2,
   maxZoom: 10, //crs.options.resolutions.length
-  continuousWorld: true,
-  worldCopyJump: false,
   layers: [positron, amus],
 }).setView([0, 0], 2);
 

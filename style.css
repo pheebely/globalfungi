@@ -26,7 +26,7 @@ margin-top: 2vh;
  .topbar {
   display: block;
   top: 0;
-  width: 100%;
+  width: 100vw;
   height: 50px;
   color: rgb(0, 0, 0);
   background-image: url("./svg/mariomushroom.svg");
@@ -50,21 +50,38 @@ margin-top: 2vh;
  }
 
  .container {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     display: block;
     background-color: #222222;
-    /* flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    column-gap: 30px; */
+    margin-bottom: 5vh;
  }
 
- #d3_hist {
+ /* flex box container for d3 graphs */
+ #d3_items {
+  display: flex;
+  height: 80vh;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1;
   padding-top: 1vh;
-  margin-bottom: 5vh;
+  padding-bottom: 4vh;
+  gap: 10px 20px;
+  justify-content: space-evenly;
+  align-items: center;
+ }
+
+ #d3_items p{
+  margin-left: 5vh;
 
  }
+
+ #d3_hist, #d3_scatter, #d3_plot {
+  width: 30%;
+  /* background-color: rgba(0, 0, 0, 0.495); */
+  border: solid 1px #f2f2f23d;
+ }
+
 
  /* d3 text style */
  text {
@@ -86,5 +103,14 @@ margin-top: 2vh;
 .leaflet-popup-content {
   font-family: 'Open Sans',sans-serif;
   font-size: 11px;
+
+}
+
+@media screen and (max-width: 800px) {
+  #d3_items {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  
+  }
 
 }
