@@ -73,15 +73,12 @@ const amusMarker = {
   fillOpacity: 0.8,
 };
 
-const amus = new L.GeoJSON.AJAX(
-  "https://raw.githubusercontent.com/pheebely/globalfungi/main/amanita_muscaria.geojson",
-  {
-    pointToLayer: function (feature, latlng) {
-      return L.circleMarker(latlng, amusMarker);
-    },
-    onEachFeature: onEachFeature,
-  }
-);
+const amus = new L.GeoJSON.AJAX("amanita_muscaria.geojson", {
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, amusMarker);
+  },
+  onEachFeature: onEachFeature,
+});
 
 //HEATMAP
 // Update the heatmap data with your coordinates
@@ -577,6 +574,11 @@ function onEachFeature(feature, layer) {
         feature.properties.biome +
         "<br>" +
         "<b>" +
+        "pH Value: " +
+        "</b>" +
+        feature.properties.ph +
+        "<br>" +
+        "<b>" +
         "Mean Annual Temperature: " +
         "</b>" +
         feature.properties.mat +
@@ -667,7 +669,7 @@ const positronLabels = L.maptilerLayer({
 const overlayMaps = {
   "Mean Annual Temperature": avgtemptile,
   "Nitrogen 0-5cm depth (cg/kg)": nitrogen,
-  "Anthropogenic Biomes of the World, v1 (2001-2006)": antBiome,
+  "Anthropogenic Biomes": antBiome,
   "Hexbin Map (All Samples)": hexbin_global,
   // "All Samples": globalfungiwms,
   "Heat Map": heatmapLayer,
@@ -678,7 +680,36 @@ const layerControl = L.control
   .layers(baseMaps, overlayMaps, { collapsed: true })
   .addTo(map);
 
-// Add and remove layers
+//Adding titles to legend before overlays:
+
+var targetElement = document.querySelector(
+  "div.leaflet-control-layers-overlays"
+);
+
+//Add title for Environmental layers
+var legendTitle = document.createElement("h3");
+legendTitle.id = "legendTitle";
+legendTitle.innerHTML = "Environmental ";
+targetElement.parentNode.insertBefore(legendTitle, targetElement);
+
+//Add title for Density layers
+var legendTitle2 = document.createElement("h3");
+legendTitle2.id = "legendTitle";
+legendTitle2.innerHTML = "Density Map ";
+
+var legendLabels = targetElement.getElementsByTagName("label");
+var fourthlabel = legendLabels[3];
+fourthlabel.parentNode.insertBefore(legendTitle2, fourthlabel);
+
+//Add title for Fungi samples
+var legendTitle3 = document.createElement("h3");
+legendTitle3.id = "legendTitle";
+legendTitle3.innerHTML = "Fungi Sample ";
+
+var sixthlabel = legendLabels[5];
+sixthlabel.parentNode.insertBefore(legendTitle3, sixthlabel);
+
+// Add and remove legends for overlays:
 uri =
   "https://maps.isric.org/mapserv?map=/map/nitrogen.map&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=nitrogen_0-5cm_mean&format=image/png&STYLE=default";
 
@@ -692,17 +723,19 @@ var nitrolegend;
 
 map.on("overlayadd", function (e) {
   // Switch to the nitrogen legend...
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  nitrolegend = L.wmsLegend(uri);
-
   if (e.name === "Nitrogen 0-5cm depth (cg/kg)") {
+    console.log("add nitrogen layer");
+
+    nitrolegend = L.wmsLegend(uri);
     nitrolegend.addTo(map);
-  } else if (map.removeControl(nitrolegend));
+    map.removeControl(antBiomelegend);
+  }
 });
 
 map.on("overlayremove", function (e) {
   if (e.name === "Nitrogen 0-5cm depth (cg/kg)") {
+    console.log("remove nitrogen layer");
+
     map.removeControl(nitrolegend);
   }
 });
@@ -710,42 +743,60 @@ map.on("overlayremove", function (e) {
 var antBiomelegend;
 
 map.on("overlayadd", function (e) {
-  // Switch to the nitrogen legend...
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  antBiomelegend = L.wmsLegend(uriantBiome);
-
-  if (e.name === "Anthropogenic Biomes of the World, v1 (2001-2006)") {
+  if (e.name === "Anthropogenic Biomes") {
+    console.log("add biome layer");
+    antBiomelegend = L.wmsLegend(uriantBiome);
     antBiomelegend.addTo(map);
-    // console.log(e);
-  } else if (map.removeControl(antBiomelegend));
+    map.removeControl(nitrolegend);
+  }
 });
 
 map.on("overlayremove", function (e) {
-  if (e.name === "Anthropogenic Biomes of the World, v1 (2001-2006)") {
+  if (e.name === "Anthropogenic Biomes") {
+    console.log("remove biome layer");
+
     map.removeControl(antBiomelegend);
-    // console.log(e);
   }
 });
 
 var hexbinlegend;
 
 map.on("overlayadd", function (e) {
-  // Switch to the nitrogen legend...
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  hexbinlegend = L.wmsLegend(urihexbin);
-
   if (e.name === "Hexbin Map (All Samples)") {
+    hexbinlegend = L.wmsLegend(urihexbin);
     hexbinlegend.addTo(map);
-    console.log(e);
-  } else if (map.removeControl(hexbinlegend));
+  }
 });
 
 map.on("overlayremove", function (e) {
   if (e.name === "Hexbin Map (All Samples)") {
     map.removeControl(hexbinlegend);
-    console.log(e);
+  }
+});
+
+//Example code for adding png legend:
+
+var avgtemplegend;
+
+map.on("overlayadd", function (e) {
+  if (e.name === "Mean Annual Temperature") {
+    avgtemplegend = L.control.Legend({
+      position: "bottomright",
+      legends: [
+        {
+          label: "Marker1",
+          type: "image",
+          url: "marker/marker-red.png",
+        },
+      ],
+    });
+    avgtemplegend.addTo(map);
+  }
+});
+
+map.on("overlayremove", function (e) {
+  if (e.name === "Mean Annual Temperature") {
+    map.removeControl(avgtemplegend);
   }
 });
 

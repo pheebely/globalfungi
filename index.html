@@ -19,18 +19,23 @@
             crossorigin=""></script>
 
         <script src="./plugins/leaflet.ajax.js"></script>
+        <link rel="stylesheet" href="./plugins/leaflet.groupedlayercontrol.min.css">
+        <script src="./plugins/leaflet.groupedlayercontrol.min.js"></script>
+
 
         <!-- Heatmap Leaflet -->
         <script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
-        
-            <!-- wms legend plugin -->
+
+        <!-- wms legend plugin -->
         <link rel="stylesheet" href="./plugins/leaflet.wmslegend.css"/>
         <script src="./plugins/leaflet.wmslegend.js"></script>
 
+        <!-- leaflet legend plugin -->
+        <link rel="stylesheet" href="./plugins/leaflet.legend.css"/>
+        <script src="./plugins/leaflet.legend.js"></script>
         <!-- Proj4Leaflet -->
         <script src="./plugins/proj4-compressed.js"></script>
         <script src="./plugins/proj4leaflet.js"></script>
-
 
         <!-- Maptiler -->
         <link href="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.css" rel="stylesheet" />
@@ -43,8 +48,6 @@
         <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
         <script src="https://unpkg.com/@asymmetrik/leaflet-d3@4/dist/leaflet-d3.js" charset="utf-8"></script>
 
-        <!-- Bertin js -->
-        <script src="https://cdn.jsdelivr.net/npm/bertin" charset="utf-8"></script>
 
         <!-- CSS Stylesheet -->
         <link rel="stylesheet" href="style.css"> 
@@ -88,11 +91,9 @@
             <input id="slide" type="range" min="0" max="1" step="0.1" value="1" onchange="updateOpacity(this.value)">
 
             <div id="map">
-
-            <script src="script.js"></script>
-
-            <!-- <script src="hexData.js"></script> -->
             </div>
+            <script src="script.js"></script>
+            <script src="overlaydata.js"></script>
 
 
             <!-- <div id="map2">

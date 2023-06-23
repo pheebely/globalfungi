@@ -1,4 +1,4 @@
-#map { height: 94vh; width: 100%;
+#map { height: 92vh; width: 100%;
 margin-top: 2vh;
  }
 
@@ -33,7 +33,7 @@ input[type=range] {
 
   .container h1 {
     margin-top: 2vh;
-    margin-bottom: 1vh;
+    margin-bottom: 1.5vh;
     /* font-family: 'VT323', monospace; */
     font-family: 'Pathway Extreme', sans-serif;    
     font-weight: 100;
@@ -112,21 +112,36 @@ input[type=range] {
   font-size: 11px;
  }
 
+ #legendTitle {
+  margin: 0;
+  font-weight: 400;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #f2f2f2;
+ }
+
  .leaflet-control-layers {
   font-family: 'Open Sans',sans-serif;
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 300;
   line-height: 2;
-  color: #f2f2f2;
-  background: #000000ab;
+  color: #bdbdbd;
+  background: #333333f3;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.5);
 }
+
+.leaflet-control-layers-list {
+margin: 10px;
+
+}
+
 .leaflet-popup-content-wrapper , .leaflet-popup-tip {
   background: rgba(255, 255, 255, 0.85);
 }
 
 .leaflet-popup-content {
   font-family: 'Open Sans',sans-serif;
-  font-size: 11px;
-  
+  font-size: 11px;  
 
 }
 
