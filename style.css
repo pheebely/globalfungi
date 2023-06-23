@@ -114,7 +114,8 @@ input[type=range] {
 
  .leaflet-control-layers {
   font-family: 'Open Sans',sans-serif;
-  font-size: 11px;
+  font-size: 13px;
+  line-height: 2;
   color: #f2f2f2;
   background: #000000ab;
 }
@@ -125,6 +126,7 @@ input[type=range] {
 .leaflet-popup-content {
   font-family: 'Open Sans',sans-serif;
   font-size: 11px;
+  
 
 }
 

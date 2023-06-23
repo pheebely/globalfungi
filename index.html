@@ -19,6 +19,10 @@
             crossorigin=""></script>
 
         <script src="./plugins/leaflet.ajax.js"></script>
+
+        <!-- Heatmap Leaflet -->
+        <script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+        
             <!-- wms legend plugin -->
         <link rel="stylesheet" href="./plugins/leaflet.wmslegend.css"/>
         <script src="./plugins/leaflet.wmslegend.js"></script>
@@ -82,7 +86,7 @@
             <h1>Map Visualisations for Amanita muscaria</h1>
 
             <input id="slide" type="range" min="0" max="1" step="0.1" value="1" onchange="updateOpacity(this.value)">
-            
+
             <div id="map">
 
             <script src="script.js"></script>
