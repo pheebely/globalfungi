@@ -23,6 +23,7 @@ const avgtemptile = L.tileLayer.wms(
     format: "image/png",
     transparent: true,
     noWrap: true,
+    opacity: 0.8,
   }
 );
 
@@ -36,12 +37,31 @@ const nitrogen = L.tileLayer.wms(
   }
 );
 
+const antBiome = L.tileLayer.wms(
+  "https://sedac.ciesin.columbia.edu/geoserver/wms",
+  {
+    layers: "anthromes:anthromes-anthropogenic-biomes-world-v1",
+    format: "image/png",
+    transparent: true,
+    noWrap: true,
+  }
+);
+
 const globalfungiwms = L.tileLayer.wms("http://localhost:8080/geoserver/wms/", {
   layers: "sample_list_asia1206",
   format: "image/png",
   transparent: true,
   noWrap: true,
   version: "1.1.0",
+});
+
+const hexbin_global = L.tileLayer.wms("http://localhost:8080/geoserver/wms/", {
+  layers: "globalfungi:Hexbin_Global",
+  format: "image/png",
+  transparent: true,
+  noWrap: true,
+  version: "1.1.0",
+  opacity: 0.8,
 });
 
 const amusMarker = {
@@ -63,30 +83,84 @@ const amus = new L.GeoJSON.AJAX(
   }
 );
 
-// Add pop up for each point feature
+// Add pop up, highlight on hover for each point feature
 function onEachFeature(feature, layer) {
   if (feature.properties && feature.properties.id) {
     layer.bindPopup(
-      "<h3>" +
+      "<p>" +
+        "<b>" +
         "Sample ID: " +
+        "</b>" +
         feature.properties.id +
-        "</h3>" +
-        "<p>" +
+        "<br>" +
+        "<b>" +
         "Paper ID: " +
+        "</b>" +
         feature.properties.paper_id +
         "<br>" +
+        "<b>" +
         "Continent: " +
+        "</b>" +
         feature.properties.continent +
         "<br>" +
+        "<b>" +
         "Sample type: " +
+        "</b>" +
         feature.properties.sample_type +
         "<br>" +
+        "<b>" +
         "Biome: " +
+        "</b>" +
         feature.properties.biome +
+        "<br>" +
+        "<b>" +
+        "Mean Annual Temperature: " +
+        "</b>" +
+        feature.properties.mat +
+        "°c" +
+        "<br>" +
+        "<b>" +
+        "Mean Annual Precipitation: " +
+        "</b>" +
+        feature.properties.map +
+        "mm" +
+        "<br>" +
+        "<b>" +
+        "Year Sampled: " +
+        "</b>" +
+        feature.properties.year_of_start +
         "</p>"
     );
   } else {
   }
+
+  layer.on({
+    mouseover: highlightFeature,
+    mouseout: resetHighlight,
+  });
+}
+
+function highlightFeature(e) {
+  const layer = e.target;
+
+  layer.setStyle({
+    color: "#1cecc9",
+    fillOpacity: 1,
+    weight: 2,
+  });
+
+  layer.bringToFront();
+}
+
+function resetHighlight(e) {
+  amus.resetStyle(e.target);
+}
+
+function updateOpacity(value) {
+  avgtemptile.setOpacity(value);
+  antBiome.setOpacity(value);
+  nitrogen.setOpacity(value);
+  hexbin_global.setOpacity(value);
 }
 
 // Molleweide with map's pixel origin at coordinate (0, 0)
@@ -120,20 +194,6 @@ const baseMaps = {
   Satellite: satellite,
 };
 
-const overlayMaps = {
-  "Mean Annual Temperature": avgtemptile,
-  "Nitrogen 0-5cm depth (cg/kg)": nitrogen,
-  // "All Samples": globalfungiwms,
-  "Amanita muscaria Samples": amus,
-};
-
-const layerControl = L.control
-  .layers(baseMaps, overlayMaps, { collapsed: false })
-  .addTo(map);
-
-uri =
-  "https://maps.isric.org/mapserv?map=/map/nitrogen.map&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=nitrogen_0-5cm_mean&format=image/png&STYLE=default";
-
 const positronLabels = L.maptilerLayer({
   apiKey: key,
   pane: "labels",
@@ -141,7 +201,28 @@ const positronLabels = L.maptilerLayer({
   // optional
 }).addTo(map);
 
+const overlayMaps = {
+  "Mean Annual Temperature": avgtemptile,
+  "Nitrogen 0-5cm depth (cg/kg)": nitrogen,
+  "Anthropogenic Biomes of the World, v1 (2001-2006)": antBiome,
+  "Hexbin Map (All Samples)": hexbin_global,
+  // "All Samples": globalfungiwms,
+  "Amanita muscaria Samples": amus,
+};
+
+const layerControl = L.control
+  .layers(baseMaps, overlayMaps, { collapsed: true })
+  .addTo(map);
+
 // Add and remove layers
+uri =
+  "https://maps.isric.org/mapserv?map=/map/nitrogen.map&version=1.3.0&service=WMS&request=GetLegendGraphic&sld_version=1.1.0&layer=nitrogen_0-5cm_mean&format=image/png&STYLE=default";
+
+uriantBiome =
+  "https://sedac.ciesin.columbia.edu/geoserver/ows?service=WMS&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=anthromes%3Aanthromes-anthropogenic-biomes-world-v1";
+
+urihexbin =
+  "http://localhost:8080/geoserver/ows?service=WMS&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=globalfungi%3AHexbin_Global";
 
 var nitrolegend;
 
@@ -153,13 +234,73 @@ map.on("overlayadd", function (e) {
 
   if (e.name === "Nitrogen 0-5cm depth (cg/kg)") {
     nitrolegend.addTo(map);
-    console.log(e);
   } else if (map.removeControl(nitrolegend));
 });
 
 map.on("overlayremove", function (e) {
   if (e.name === "Nitrogen 0-5cm depth (cg/kg)") {
     map.removeControl(nitrolegend);
+  }
+});
+
+var antBiomelegend;
+
+map.on("overlayadd", function (e) {
+  // Switch to the nitrogen legend...
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  antBiomelegend = L.wmsLegend(uriantBiome);
+
+  if (e.name === "Anthropogenic Biomes of the World, v1 (2001-2006)") {
+    antBiomelegend.addTo(map);
+    // console.log(e);
+  } else if (map.removeControl(antBiomelegend));
+});
+
+map.on("overlayremove", function (e) {
+  if (e.name === "Anthropogenic Biomes of the World, v1 (2001-2006)") {
+    map.removeControl(antBiomelegend);
+    // console.log(e);
+  }
+});
+
+var hexbinlegend;
+
+map.on("overlayadd", function (e) {
+  // Switch to the nitrogen legend...
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  hexbinlegend = L.wmsLegend(urihexbin);
+
+  if (e.name === "Hexbin Map (All Samples)") {
+    hexbinlegend.addTo(map);
+    console.log(e);
+  } else if (map.removeControl(hexbinlegend));
+});
+
+map.on("overlayremove", function (e) {
+  if (e.name === "Hexbin Map (All Samples)") {
+    map.removeControl(hexbinlegend);
     console.log(e);
   }
 });
+
+// Create the hexbin layer and set all of the accessor functions
+
+// !!need to use live web server to loadJSON!!
+// let hexData = fetch("/globalfungi_latlng.json").then(function (response) {
+//   return response.json();
+// });
+// hexData.then(function (data) {
+//   // data now contains the loaded JSON data
+//   L.geoJson(data);
+// });
+
+// var options = {
+//   radius: 12,
+//   opacity: 0.5,
+//   duration: 500,
+// };
+
+// var hexLayer = L.hexbinLayer(options).addTo(map);
+// hexLayer.colorScale().range(["white", "#ad1345"]);

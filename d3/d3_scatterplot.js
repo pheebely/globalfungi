@@ -1,7 +1,7 @@
 // set the dimensions and marginSPs of the graph
-const marginSP = { top: 10, right: 35, bottom: 90, left: 75 },
-  widthSP = 560 - marginSP.left - marginSP.right,
-  heightSP = 600 - marginSP.top - marginSP.bottom;
+const marginSP = { top: 20, right: 35, bottom: 75, left: 75 },
+  widthSP = 460 - marginSP.right,
+  heightSP = 500;
 
 const { csv, select, scaleLinear, extent, axisLeft, axisBottom } = d3; //same as const csv = d3.csv, so we dont need to keep repeating d3.
 
@@ -29,8 +29,8 @@ const yValue = (d) => d.MAP;
 
 const svgSP = select("#d3_scatter")
   .append("svg")
-  .attr("width", widthSP + marginSP.left + marginSP.right)
-  .attr("height", heightSP + marginSP.top + marginSP.bottom);
+  .attr("width", widthSP + marginSP.right)
+  .attr("height", heightSP + marginSP.bottom);
 
 const main = async () => {
   //using this modern syntax for REQUEST and PROMISE of data
@@ -39,7 +39,7 @@ const main = async () => {
   const x = scaleLinear() //checks each and every row of the dataset and returns min and max
     .domain(extent(data, xValue)) //extent gets both min and max at the same time
     .range([marginSP.left, widthSP - marginSP.right]); //range for x scale in svg
-  console.log(x.range());
+  // console.log(x.range());
   //output with be an array
   const y = scaleLinear() //checks each and every row of the dataset and returns min and max
     .domain(extent(data, yValue)) //extent gets both min and max at the same time
@@ -86,9 +86,9 @@ const main = async () => {
     .append("text")
     .attr("text-anchor", "end")
     .attr("x", widthSP - 150)
-    .attr("y", heightSP - marginSP.top)
+    .attr("y", heightSP)
     .text("Mean Temperature (c)");
 
-  console.log(data);
+  // console.log(data);
 };
 main();

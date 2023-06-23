@@ -1,7 +1,7 @@
 // set the dimensions and marginSPs of the graph
-const marginSP2 = { top: 10, right: 35, bottom: 90, left: 75 },
-  widthSP2 = 560 - marginSP2.left - marginSP2.right,
-  heightSP2 = 600 - marginSP2.top - marginSP2.bottom;
+const marginSP2 = { top: 20, right: 35, bottom: 75, left: 75 },
+  widthSP2 = 460 - marginSP2.right,
+  heightSP2 = 500;
 
 // const { csv, select, scaleLinear, extent, axisLeft, axisBottom } = d3; //same as const csv = d3.csv, so we dont need to keep repeating d3.
 
@@ -50,8 +50,8 @@ const yValue2 = (d) => d.pH;
 const svgSP2 = d3
   .select("#d3_plot")
   .append("svg")
-  .attr("width", widthSP2 + marginSP2.left + marginSP2.right)
-  .attr("height", heightSP2 + marginSP2.top + marginSP2.bottom);
+  .attr("width", widthSP2 + marginSP2.right)
+  .attr("height", heightSP2 + marginSP2.bottom);
 
 const main2 = async () => {
   //using this modern syntax for REQUEST and PROMISE of data
@@ -105,9 +105,9 @@ const main2 = async () => {
     .append("text")
     .attr("text-anchor", "end")
     .attr("x", widthSP2 - 150)
-    .attr("y", heightSP2 - marginSP2.top)
+    .attr("y", heightSP2)
     .text("Mean Temperature (c)");
 
-  console.log(data);
+  // console.log(data);
 };
 main2();

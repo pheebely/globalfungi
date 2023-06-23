@@ -7,7 +7,7 @@
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700;800&family=VT323&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700;800&family=Pathway+Extreme:wght@100;400&family=VT323&display=swap" rel="stylesheet">
 
         <!-- Leaflet -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
@@ -28,7 +28,6 @@
         <script src="./plugins/proj4leaflet.js"></script>
 
 
-
         <!-- Maptiler -->
         <link href="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.css" rel="stylesheet" />
         <script src="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.umd.js"></script>
@@ -36,6 +35,12 @@
 
         <!-- D3 -->
         <script src="https://d3js.org/d3.v7.min.js"></script>
+
+        <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
+        <script src="https://unpkg.com/@asymmetrik/leaflet-d3@4/dist/leaflet-d3.js" charset="utf-8"></script>
+
+        <!-- Bertin js -->
+        <script src="https://cdn.jsdelivr.net/npm/bertin" charset="utf-8"></script>
 
         <!-- CSS Stylesheet -->
         <link rel="stylesheet" href="style.css"> 
@@ -52,36 +57,47 @@
             <div id="d3_items">
                 <div id="d3_hist">                
                     <script src="./d3/d3_hist.js"></script>
-                    <p>                    <br><br>
+                    <p>                    <br><br><br>
                         GlobalFungi dataset release 4 (20.7.2021). <br>
-                        Taxonomy based on UNITE version 8.2 (4.2.2020).<br>
                         Actual number of samples in the database: 57184;<br>
                         Actual number of studies included: 515.</p>
 
                 </div>
                 <div id="d3_scatter">
                     <script src="./d3/d3_scatterplot.js"></script>
+                    <P>
+                        Mean annual temperature (MAT) and mean annual precipitation (MAP) in the metadata were obtained from CHELSA database.
+
+                    </P>
                 </div>
                 <div id="d3_plot">
                     <script src="./d3/d3_scatterplot2.js"></script>
+                    <P>
+                        Mean annual temperature (MAT) in the metadata were obtained from CHELSA database. pH values were obtained from samples.
+
+                    </P>
                 </div>
                 
             </div>
             <h1>Map Visualisations for Amanita muscaria</h1>
 
+            <input id="slide" type="range" min="0" max="1" step="0.1" value="1" onchange="updateOpacity(this.value)">
+            
             <div id="map">
-
 
             <script src="script.js"></script>
 
+            <!-- <script src="hexData.js"></script> -->
             </div>
 
 
+            <!-- <div id="map2">
+                <svg class="bubblemap" width="730" height="450"></svg>
 
-            <!-- <div id="d3_scatterplot">
-                <script src="d3_scatterplot.js"></script>
+                <script src="bertin.js"></script>
 
             </div> -->
+
 
         </div>
     </body>
