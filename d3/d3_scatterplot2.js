@@ -3,45 +3,7 @@ const marginSP2 = { top: 20, right: 35, bottom: 75, left: 75 },
   widthSP2 = 460 - marginSP2.right,
   heightSP2 = 500;
 
-// const { csv, select, scaleLinear, extent, axisLeft, axisBottom } = d3; //same as const csv = d3.csv, so we dont need to keep repeating d3.
-
-// const csvdata =
-//   "https://raw.githubusercontent.com/pheebely/globalfungi/main/globalfungi_merged.csv";
-
-//convert strings that are numbers back to numbers by adding a + in the front
-// const parseRow = (d) => {
-//   d.id = +d.id;
-//   d.longitude = +d.longitude;
-//   d.latitude = +d.latitude;
-//   d.ITS1_extracted = +d.ITS1_extracted;
-//   d.ITS2_extracted = +d.ITS2_extracted;
-//   d.ITS_total = +d.ITS_total;
-//   d.pH = +d.pH;
-//   d.year_of_sampling = +d.year_of_sampling;
-//   d.MAT = +d.MAT;
-//   d.MAP = +d.MAP;
-//   return d;
-// };
-
-// const NaNfilter = function (data) {
-//   data = data.filter(function (d) {
-//     if (isNaN(d.pH)) {
-//       return false;
-//     }
-//     d.pH = parseInt(d.pH, 10);
-//     return true;
-//   });
-// };
-
-const NaNfilter = function (csvdata) {
-  csvdata = csvdata.filter(function (d) {
-    if (isNaN(d.pH)) {
-      return false;
-    }
-    d.pH = parseInt(d.pH, 10);
-    return true;
-  });
-};
+const csv2data = "d3/globalfungi_merged_noNaN.csv";
 
 //function that takes as input one row and give back some value from the data we should use
 const xValue2 = (d) => d.MAT;
@@ -55,7 +17,7 @@ const svgSP2 = d3
 
 const main2 = async () => {
   //using this modern syntax for REQUEST and PROMISE of data
-  const data = await d3.csv(csvdata, NaNfilter, parseRow);
+  const data = await d3.csv(csv2data, parseRow);
 
   const x2 = d3
     .scaleLinear() //checks each and every row of the dataset and returns min and max

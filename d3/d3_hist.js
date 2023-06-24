@@ -36,9 +36,7 @@ const svg = d3
 //   console.log(data);
 
 // Number of samples per continent
-d3.json(
-  "https://raw.githubusercontent.com/pheebely/globalfungi/main/continents.json"
-).then(function (data) {
+d3.json("d3/continents.json").then(function (data) {
   // console.log(data);
 
   // X axis

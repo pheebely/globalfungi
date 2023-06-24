@@ -9,6 +9,11 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700;800&family=Pathway+Extreme:wght@100;400&family=VT323&display=swap" rel="stylesheet">
 
+        <!-- jquery -->
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script> -->
+
+
         <!-- Leaflet -->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
             integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
@@ -18,9 +23,21 @@
             integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
             crossorigin=""></script>
 
+        <!-- Leaflet marker cluster plugin -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css" />
+        <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js'></script>
+
         <script src="./plugins/leaflet.ajax.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+
         <link rel="stylesheet" href="./plugins/leaflet.groupedlayercontrol.min.css">
         <script src="./plugins/leaflet.groupedlayercontrol.min.js"></script>
+
+            <!-- Time range slider Plugin-->
+        <link rel="stylesheet" href="forSlider/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="forSlider/jquery-ui.js"></script>
 
 
         <!-- Heatmap Leaflet -->
@@ -88,20 +105,20 @@
             </div>
             <h1>Map Visualisations for Amanita muscaria</h1>
 
-            <input id="slide" type="range" min="0" max="1" step="0.1" value="1" onchange="updateOpacity(this.value)">
+            <input id="slide" type="range" min="0" max="1" step="0.1" value="0.8" onchange="updateOpacity(this.value)">
 
             <div id="map">
             </div>
+            <div class="sliderDiv" >
+                <p>
+                    <label for="amount">Time range:</label>
+                    <input class="sliderValue" type="text" id="amount" >
+                </p>
+                <div id="slider-range"></div>
+            </div>
+            <script src="heatMap.js"></script>
             <script src="script.js"></script>
-            <script src="overlaydata.js"></script>
 
-
-            <!-- <div id="map2">
-                <svg class="bubblemap" width="730" height="450"></svg>
-
-                <script src="bertin.js"></script>
-
-            </div> -->
 
 
         </div>
