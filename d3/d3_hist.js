@@ -88,29 +88,4 @@ d3.json("d3/continents.json").then(function (data) {
     .attr("y", -margin.left + 30)
     .attr("x", -height / 2 + margin.top)
     .text("No. of Samples");
-
-  //To-do: add function for showing total number when hover
-  // create a tooltip
-  // const tip = d3
-  //   .select("d3_hist_item")
-  //   .append("div")
-  //   .attr("class", "tooltip")
-  //   .style("opacity", 0);
-
-  // //Add events to bars
-  // bars
-  //   .on("mouseover", function (d) {
-  //     tip
-  //       .style("opacity", 1)
-  //       .html("Total: " + d.total)
-  //       .style("left", d3.pageX - 10 + "px")
-  //       .style("top", d3.pageY - 10 + "px");
-  //     bars.style("opacity", 1);
-  //     console.log(d);
-  //   })
-
-  //   .on("mouseout", function (d) {
-  //     tip.style("opacity", 0);
-  //     bars.style("opacity", 0.7);
-  //   });
 });

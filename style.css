@@ -1,5 +1,7 @@
-#map { height: 92vh; width: 100%;
-margin-top: 2vh;
+#map { height: 93vh; width: 98%;
+margin-top: 5vh;
+margin-left: 1vw;
+margin-right: 1vw;
  }
 
 #map2 {
@@ -8,15 +10,28 @@ margin-top: 2vh;
 text-align: center;
 }
 
+p {
+font-size: 13px;
+}
+
+h1 {
+  font-family: 'Belanosima', sans-serif;    
+  text-align: center;
+  font-size: 36px;
+  font-weight: 400;
+  color: #f2f2f2;
+
+}
+
 input[type=range] {
   position: absolute;
   z-index: 1000;
-  margin-top: 40px;
+  margin-top: 30px;
   height: 5px;
   width: 7%;
   box-shadow: 0px 0px 0px #000000;
   cursor: pointer;
-  right: 5vw;
+  right: 7vw;
 }
 
 
@@ -31,14 +46,48 @@ input[type=range] {
 
   }
 
-  .container h1 {
-    margin-top: 2vh;
-    margin-bottom: 1.5vh;
-    /* font-family: 'VT323', monospace; */
-    font-family: 'Pathway Extreme', sans-serif;    
-    font-weight: 100;
-    color: #f2f2f2;
+footer {
+  padding: 3vh;
+}
+
+  footer p {
+    font-size: 11px;
     text-align: center;
+    color: #848484;
+
+  }
+
+  .container h1 {
+    margin-top: 5vh;
+    margin-bottom: 1.5vh;
+
+  }
+
+  .container  p, li {
+    margin-left: 25vw;
+    margin-right: 25vw;
+    font-size: 13px;
+  
+   }
+
+  .header {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('png/fungiheader.png');
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+  }
+  
+  .header h1 {
+    position: relative;
+    font-family: 'Belanosima', sans-serif;    
+    font-weight: 400;
+    font-size: 56px;
+    text-align: center;
+    top: 50vh;
+    margin: 0;
+  
   }
 
  .topbar {
@@ -69,11 +118,11 @@ input[type=range] {
  }
 
  .container {
-    height: 100vh;
-    width: 100%;
+    height: fit-content;
+    width: 100vw;
     display: block;
     background-color: #222222;
-    margin-bottom: 5vh;
+    margin-bottom: 7vh;
  }
 
  /* flex box container for d3 graphs */
@@ -92,8 +141,8 @@ input[type=range] {
  }
 
  #d3_items p{
-  margin-left: 5vh;
-  margin-right: 5vh;
+  margin-left: 5vw;
+  margin-right: 3vw;
 
 
  }
@@ -142,7 +191,11 @@ margin: 10px;
 .leaflet-popup-content {
   font-family: 'Open Sans',sans-serif;
   font-size: 11px;  
+}
 
+.leaflet-popup-content p {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .leaflet-control-scale {
@@ -164,39 +217,74 @@ margin: 10px;
   background-color: rgba(44, 127, 184, 0.6);
 }
 
+.marker-cluster div {
+font-family: 'Open Sans',sans-serif;
+font-size: 10px;
+font-weight: 700;
+
+}
+
 .sliderDiv{
-  position: relative;
-  left: 80vw;
+  position: absolute;
+  left: 5vw;
+  top: 5vh;
   z-index: 2000;
   bottom: 5vh;
   width: 19vw;
   height: 8%;
   margin-top: -5vh;
   margin-right: 2vw;
+  font-size: 12px;
+
 }
 
-/* .sliderDiv p{
-  display:inline-block;
+.sliderDiv p {
+  font-family: 'Open Sans',sans-serif;
+  margin-left: 0;
+  margin-right: 0;
 }
-
-#slider-range{
-  display:inline-block;
-  width: 68%;
-  top:.3em;
-} */
 
 input.sliderValue{
   border:0;
   color:#4E91BE;
   background-color: transparent;
-  font-weight:bold;
+  font-weight: 700;
+  font-family: 'Open Sans',sans-serif;
+
 }
 
-/* @media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
   #d3_items {
     flex-direction: column;
     flex-wrap: nowrap;
-  
+    flex-shrink: 1;
+    margin-top: 2vh;
+    height: fit-content;
+    column-gap: 5vh;
+
   }
 
-} */
+  #d3_hist, #d3_scatter, #d3_plot {
+    width: 100%;
+
+   }
+
+   .container  p, li {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  
+   }
+
+   .sliderDiv {
+    position: absolute;
+    top: 90%;
+    width: 60vw;
+    left: 30vw;
+   }
+
+   .maplibregl-ctrl-group button {
+    display: none;
+   }
+
+   
+}

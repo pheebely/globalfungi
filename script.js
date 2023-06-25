@@ -78,15 +78,12 @@ const ph_popup = {
   fillOpacity: 0,
 };
 
-const PHpopup = new L.GeoJSON.AJAX(
-  "https://raw.githubusercontent.com/pheebely/globalfungi/main/amanita_muscaria.geojson",
-  {
-    pointToLayer: function (feature, latlng) {
-      return L.circleMarker(latlng, ph_popup);
-    },
-    onEachFeature: onEachFeature,
-  }
-);
+const PHpopup = new L.GeoJSON.AJAX("data/amanita_muscaria.geojson", {
+  pointToLayer: function (feature, latlng) {
+    return L.circleMarker(latlng, ph_popup);
+  },
+  onEachFeature: onEachFeature,
+});
 
 const gfMarker = {
   radius: 3,
@@ -779,8 +776,8 @@ renderPinsFromURL(something_markers, geoJsonURL);
 function customizeMarker() {
   const markerNarrativeHtmlStyles = `
                                           background-color: ${markColor};
-                                          width: 1.2rem;
-                                          height: 1.2rem;
+                                          width: 0.8rem;
+                                          height: 0.8rem;
                                           display: block;
                                           top: -1.2rem;
                                           position: relative;
@@ -790,7 +787,7 @@ function customizeMarker() {
                                       `;
   var icon = L.divIcon({
     className: "my-custom-pin",
-    iconAnchor: [0, 10],
+    iconAnchor: [0, 5],
     labelAnchor: [-6, 0],
     popupAnchor: [0, -36],
     html: `<span style="${markerNarrativeHtmlStyles}" />`,
@@ -878,7 +875,7 @@ const map = new L.map("map", {
   // crs: crs,
   minZoom: 2,
   maxZoom: 15,
-  layers: [positron, amus, something_markers],
+  layers: [positron, something_markers, amus],
 }).setView([0, 0], 2);
 
 L.control.scale().addTo(map);
@@ -907,7 +904,7 @@ const overlayMaps = {
   "Nitrogen 0-5cm depth (cg/kg)": nitrogen,
   "Anthropogenic Biomes": antBiome,
   "Hexbin Map (All Samples)": hexbin_global,
-  "Heat Map": heatmapLayer,
+  "Heat Map (Amanita muscaria)": heatmapLayer,
   "All fungi samples": something_markers,
   "Amanita muscaria Samples": amus,
   "Amanita muscaria Sampled pH": ph,

@@ -2,13 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>GlobalFungi 🍄</title>
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700;800&family=Pathway+Extreme:wght@100;400&family=VT323&display=swap" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=Open+Sans:wght@300;500;600;700;800&family=Pathway+Extreme:wght@100;400&family=VT323&display=swap" rel="stylesheet">
         <!-- jquery -->
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'></script> -->
@@ -72,11 +72,42 @@
     </head>
 
     <body>
-        <div class="topbar">
+        <!-- <div class="topbar">
             <h1>GlobalFungi</h1>
+        </div> -->
+        <div class="header">
+            <h1 id="header">GlobalFungi</h1>
         </div>
 
         <div class="container">
+
+            <h1>GlobalFungi Map</h1>
+            <p id="howto">How to use the map:
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sodales nec ante eu convallis. Morbi id mi blandit, semper metus ut, aliquam arcu. Curabitur pellentesque semper blandit. Ut id tortor sit amet erat facilisis viverra. Nulla a enim malesuada quam congue posuere id eu quam. Nam a dolor mauris. Praesent id consectetur diam, at molestie urna. Mauris vulputate, magna id pulvinar tempus, elit lectus congue nunc, id fermentum lacus lectus sed massa. Aenean in sem id nibh rutrum blandit ut id odio. Donec rhoncus, sapien in tincidunt vulputate, lorem urna dapibus urna, in rutrum risus justo in tellus. Duis blandit mi vitae ex congue, ut tristique turpis condimentum. Quisque a molestie justo. Integer a leo sit amet nisl interdum viverra. Pellentesque consectetur id sem id rutrum. Sed augue nulla, iaculis nec leo et, malesuada suscipit est. Phasellus interdum commodo orci nec hendrerit.
+
+                <br>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                <li>Integer nec magna quis sapien suscipit dignissim at quis ex.</li>
+                <li>Quisque ultricies velit eget dolor commodo, eu accumsan nisi ornare.</li>
+               <li>Duis nec urna sed mauris fermentum tristique id eget neque.
+            </li> 
+            </p>
+        </div>
+
+            <input id="slide" type="range" min="0" max="1" step="0.1" value="0.8" onchange="updateOpacity(this.value)">
+
+            <div id="map">
+                <div class="sliderDiv" >
+                    <p>
+                        <label for="amount">Time range:</label>
+                        <input class="sliderValue" type="text" id="amount" >
+                    </p>
+                    <div id="slider-range"></div>
+                </div>
+            </div>
+
+            <script src="heatMap.js"></script>
+            <script src="script.js"></script>
             <h1>General Statistics of GlobalFungi Database</h1>
             <div id="d3_items">
                 <div id="d3_hist">                
@@ -103,24 +134,12 @@
                 </div>
                 
             </div>
-            <h1>Map Visualisations for Amanita muscaria</h1>
-
-            <input id="slide" type="range" min="0" max="1" step="0.1" value="0.8" onchange="updateOpacity(this.value)">
-
-            <div id="map">
-            </div>
-            <div class="sliderDiv" >
-                <p>
-                    <label for="amount">Time range:</label>
-                    <input class="sliderValue" type="text" id="amount" >
-                </p>
-                <div id="slider-range"></div>
-            </div>
-            <script src="heatMap.js"></script>
-            <script src="script.js"></script>
+            <footer>
+                <div class="footer">
+                    <p>Created by Phoebe Ly, Dilara Bozkurt, Zhenjiang Li for MSc Cartography, June 2023.</p> 
+                </div>
+            </footer>
 
 
-
-        </div>
     </body>
 </html>
