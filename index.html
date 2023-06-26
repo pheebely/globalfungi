@@ -22,6 +22,10 @@
         <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
             integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
             crossorigin=""></script>
+        
+        <!-- Heatmap Leaflet -->
+        <script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+        <!-- <script src="plugins/leaflet-heat.js"></script> -->
 
         <!-- Leaflet marker cluster plugin -->
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css" />
@@ -31,17 +35,15 @@
         <script src="./plugins/leaflet.ajax.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
 
-        <link rel="stylesheet" href="./plugins/leaflet.groupedlayercontrol.min.css">
-        <script src="./plugins/leaflet.groupedlayercontrol.min.js"></script>
+        <script src="plugins/proj4-compressed.js"></script>
+        <script src="plugins/proj4leaflet.js"></script>
+
 
             <!-- Time range slider Plugin-->
         <link rel="stylesheet" href="forSlider/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="forSlider/jquery-ui.js"></script>
 
-
-        <!-- Heatmap Leaflet -->
-        <script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
 
         <!-- wms legend plugin -->
         <link rel="stylesheet" href="./plugins/leaflet.wmslegend.css"/>
@@ -50,9 +52,6 @@
         <!-- leaflet legend plugin -->
         <link rel="stylesheet" href="./plugins/leaflet.legend.css"/>
         <script src="./plugins/leaflet.legend.js"></script>
-        <!-- Proj4Leaflet -->
-        <script src="./plugins/proj4-compressed.js"></script>
-        <script src="./plugins/proj4leaflet.js"></script>
 
         <!-- Maptiler -->
         <link href="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.css" rel="stylesheet" />
@@ -61,10 +60,6 @@
 
         <!-- D3 -->
         <script src="https://d3js.org/d3.v7.min.js"></script>
-
-        <script src="https://d3js.org/d3-hexbin.v0.2.min.js"></script>
-        <script src="https://unpkg.com/@asymmetrik/leaflet-d3@4/dist/leaflet-d3.js" charset="utf-8"></script>
-
 
         <!-- CSS Stylesheet -->
         <link rel="stylesheet" href="style.css"> 
@@ -99,7 +94,7 @@
             <div id="map">
                 <div class="sliderDiv" >
                     <p>
-                        <label for="amount">Time range:</label>
+                        <label for="amount">Time range for all samples:</label>
                         <input class="sliderValue" type="text" id="amount" >
                     </p>
                     <div id="slider-range"></div>
@@ -114,7 +109,7 @@
                     <script src="./d3/d3_hist.js"></script>
                     <p>                    <br><br><br>
                         GlobalFungi dataset release 4 (20.7.2021). <br>
-                        Actual number of samples in the database: 57184;<br>
+                        Actual number of samples in the database: 57,184;<br>
                         Actual number of studies included: 515.</p>
 
                 </div>
