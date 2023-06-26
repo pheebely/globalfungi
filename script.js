@@ -441,7 +441,7 @@ const overlayMaps = {
   "Mean Annual Precipitation": avgpretile,
   "Nitrogen 0-5cm depth (cg/kg)": nitrogen,
   "Anthropogenic Biomes": antBiome,
-  "Hexbin Map (All Samples)": hexbin_global,
+  "Hex bin Map (All Samples)": hexbin_global,
   "Heat Map (Amanita muscaria)": heatmapLayer,
   "All fungi samples": something_markers,
   "Amanita muscaria Samples": amus,
@@ -568,7 +568,7 @@ map.on("overlayremove", function (e) {
 var hexbinlegend;
 
 map.on("overlayadd", function (e) {
-  if (e.name === "Hexbin Map (All Samples)") {
+  if (e.name === "Hex bin Map (All Samples)") {
     hexbinlegend = L.wmsLegend(urihexbin);
     hexbinlegend.addTo(map);
   }
