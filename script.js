@@ -231,8 +231,10 @@ function resetHighlight(e) {
   globalfungi.resetStyle(e.target);
 }
 
+//Opacity Slider
 function updateOpacity(value) {
   avgtemptile.setOpacity(value);
+  avgpretile.setOpacity(value);
   antBiome.setOpacity(value);
   nitrogen.setOpacity(value);
   hexbin_global.setOpacity(value);
