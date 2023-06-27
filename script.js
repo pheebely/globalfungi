@@ -125,7 +125,7 @@ const amusMarker = {
 
 const biomeMarker = {
   radius: 3,
-  fillColor: "#5dd36c",
+  fillColor: "#4aa856", //5dd36c
   color: "#fff",
   weight: 0.5,
   opacity: 1,
@@ -414,7 +414,7 @@ const map = new L.map("map", {
   minZoom: 2,
   maxZoom: 15,
   layers: [positron, something_markers, amus],
-}).setView([0, 0], 2);
+}).setView([31, 8.6], 2.5);
 
 L.control.scale().addTo(map);
 
@@ -543,12 +543,6 @@ map.on("overlayremove", function (e) {
   }
 });
 
-map.on("overlayremove", function (e) {
-  if (e.name === "Nitrogen 0-5cm depth (cg/kg)") {
-    map.removeControl(avgnitrolegend);
-  }
-});
-
 var antBiomelegend;
 
 map.on("overlayadd", function (e) {
@@ -575,7 +569,7 @@ map.on("overlayadd", function (e) {
 });
 
 map.on("overlayremove", function (e) {
-  if (e.name === "Hexbin Map (All Samples)") {
+  if (e.name === "Hex bin Map (All Samples)") {
     map.removeControl(hexbinlegend);
   }
 });

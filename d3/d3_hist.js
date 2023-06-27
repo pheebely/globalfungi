@@ -12,29 +12,6 @@ const svg = d3
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
-// Parse the Data
-
-//convert strings that are numbers back to numbers by adding a + in the front
-// const parseRow = (d) => {
-//   d.id = +d.id;
-//   d.longitude = +d.longitude;
-//   d.latitude = +d.latitude;
-//   d.ITS1_extracted = +d.ITS1_extracted;
-//   d.ITS2_extracted = +d.ITS2_extracted;
-//   d.ITS_total = +d.ITS_total;
-//   d.pH = +d.pH;
-//   d.year_start = +d.year_start;
-//   d.end = +d.year_end;
-//   d.MAT = +d.MAT;
-//   d.MAP = +d.MAP;
-//   return d;
-// };
-
-// const csvdata =
-//   "https://raw.githubusercontent.com/pheebely/globalfungi/main/globalfungi_merged.csv";
-// d3.csv(csvdata, parseRow).then(function (data) {
-//   console.log(data);
-
 // Number of samples per continent
 d3.json("d3/continents.json").then(function (data) {
   // console.log(data);
