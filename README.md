@@ -11,6 +11,10 @@ Group members:
 
 Phoebe Ly, Dilara Bozkurt, Zhenjiang Li
 
+Live Server needed to load these layers:
+
+- globalfungi.geojson
+
 Local Geoserver layers: These layers will not be available on the map when the website is loaded on another computer since they are hosted locally. 
 
 - Hex bin map
