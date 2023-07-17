@@ -5,7 +5,8 @@ const marginSP = { top: 20, right: 35, bottom: 75, left: 75 },
 
 const { csv, select, scaleLinear, extent, axisLeft, axisBottom } = d3; //same as const csv = d3.csv, so we dont need to keep repeating d3.
 
-const csvdata = "d3/globalfungi_merged.csv";
+const csvdata =
+  "https://raw.githubusercontent.com/pheebely/globalfungi/main/d3/globalfungi_merged.csv";
 
 //convert strings that are numbers back to numbers by adding a + in the front
 const parseRow = (d) => {

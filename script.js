@@ -82,12 +82,15 @@ const ph_popup = {
   fillOpacity: 0,
 };
 
-const PHpopup = new L.GeoJSON.AJAX("data/amanita_muscaria.geojson", {
-  pointToLayer: function (feature, latlng) {
-    return L.circleMarker(latlng, ph_popup);
-  },
-  onEachFeature: onEachFeature,
-});
+const PHpopup = new L.GeoJSON.AJAX(
+  "https://raw.githubusercontent.com/pheebely/globalfungi/main/data/amanita_muscaria.geojson",
+  {
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng, ph_popup);
+    },
+    onEachFeature: onEachFeature,
+  }
+);
 
 const gfMarker = {
   radius: 3,
@@ -98,12 +101,15 @@ const gfMarker = {
   fillOpacity: 0.6,
 };
 
-const globalfungi = new L.GeoJSON.AJAX("data/globalfungi.geojson", {
-  pointToLayer: function (feature, latlng) {
-    return L.circleMarker(latlng, gfMarker);
-  },
-  onEachFeature: onEachFeature,
-});
+const globalfungi = new L.GeoJSON.AJAX(
+  "https://raw.githubusercontent.com/pheebely/globalfungi/main/data/globalfungi.geojson",
+  {
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng, gfMarker);
+    },
+    onEachFeature: onEachFeature,
+  }
+);
 
 const hexbin_global = L.tileLayer.wms("http://localhost:8080/geoserver/wms/", {
   layers: "globalfungi:Hexbin_Global",
@@ -132,20 +138,26 @@ const biomeMarker = {
   fillOpacity: 0.8,
 };
 
-const amus = new L.GeoJSON.AJAX("data/amanita_muscaria.geojson", {
-  pointToLayer: function (feature, latlng) {
-    return L.circleMarker(latlng, amusMarker);
-  },
-  onEachFeature: onEachFeature,
-});
+const amus = new L.GeoJSON.AJAX(
+  "https://raw.githubusercontent.com/pheebely/globalfungi/main/data/amanita_muscaria.geojson",
+  {
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng, amusMarker);
+    },
+    onEachFeature: onEachFeature,
+  }
+);
 
-const amusBiome = new L.GeoJSON.AJAX("data/amanita_muscaria.geojson", {
-  pointToLayer: function (feature, latlng) {
-    return L.circleMarker(latlng, biomeMarker);
-  },
-  onEachFeature: onEachFeature,
-  filter: biomeFilter,
-});
+const amusBiome = new L.GeoJSON.AJAX(
+  "https://raw.githubusercontent.com/pheebely/globalfungi/main/data/amanita_muscaria.geojson",
+  {
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng, biomeMarker);
+    },
+    onEachFeature: onEachFeature,
+    filter: biomeFilter,
+  }
+);
 
 //HEATMAP
 // Update the heatmap data with your coordinates
@@ -257,7 +269,8 @@ function biomeFilter(feature) {
 
 // Set the parameters
 // The Geojson data you have in your folder
-const geoJsonURL = "data/globalfungi.geojson";
+const geoJsonURL =
+  "https://raw.githubusercontent.com/pheebely/globalfungi/main/data/globalfungi.geojson";
 
 // Start and End year of the dataset
 const baseStartYear = 2000;

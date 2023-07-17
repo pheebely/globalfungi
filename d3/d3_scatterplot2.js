@@ -3,7 +3,8 @@ const marginSP2 = { top: 20, right: 35, bottom: 75, left: 75 },
   widthSP2 = 460 - marginSP2.right,
   heightSP2 = 500;
 
-const csv2data = "d3/globalfungi_merged_noNaN.csv";
+const csv2data =
+  "https://raw.githubusercontent.com/pheebely/globalfungi/main/d3/globalfungi_merged_noNaN.csv";
 
 //function that takes as input one row and give back some value from the data we should use
 const xValue2 = (d) => d.MAT;
