@@ -1,5 +1,7 @@
 <b>GlobalFungi Map </b>
 
+This site is hosted on Netlify here: https://global-fungi-map.netlify.app
+
 <img src="png/points.png">
 
 We aimed to have a better cartographical representation of the variables of the GlobalFungi dataset (Větrovský T. et al, 2020, GlobalFungi, globalfungi.com). While the distribution of all the fungi samples is available in point and hex bin map formats, Amanita muscaria is the fungi type we focused on for showing sample properties such as pH level and biome. The user can understand the relationship between fungi samples and the environmental conditions and can check the properties of all the samples individually by clicking on each sample point. Additionally, the graphs explain the relationship between different environmental conditions such as temperature, precipitation, geographical distribution, and their impact on fungi distribution and pH level.
