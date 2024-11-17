@@ -227,14 +227,15 @@ font-weight: 700;
 .sliderDiv{
   position: absolute;
   left: 5vw;
-  top: 5vh;
+  top: 2vh;
+  padding: 1.5rem;
   z-index: 2000;
   bottom: 5vh;
   width: 19vw;
   height: 8%;
-  margin-top: -5vh;
-  margin-right: 2vw;
   font-size: 12px;
+  background-color: #0000007d;
+  border-radius: 8px;
 
 }
 
@@ -242,6 +243,7 @@ font-weight: 700;
   font-family: 'Open Sans',sans-serif;
   margin-left: 0;
   margin-right: 0;
+  margin-top: 0;
 }
 
 input.sliderValue{

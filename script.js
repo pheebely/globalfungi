@@ -433,6 +433,18 @@ const map = new L.map("map", {
 
 L.control.scale().addTo(map);
 
+const sliderDiv = document.querySelector(".sliderDiv");
+
+// Disable map dragging when interacting with slider
+sliderDiv.addEventListener("mouseenter", () => {
+  map.dragging.disable();
+});
+
+// Enable map dragging when leaving slider
+sliderDiv.addEventListener("mouseleave", () => {
+  map.dragging.enable();
+});
+
 // Layer Controls
 
 map.createPane("labels");
