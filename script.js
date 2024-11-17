@@ -452,10 +452,10 @@ const positronLabels = L.maptilerLayer({
 }).addTo(map);
 
 const overlayMaps = {
-  "Mean Annual Temperature": avgtemptile,
-  "Mean Annual Precipitation": avgpretile,
   "Nitrogen 0-5cm depth (cg/kg)": nitrogen,
   "Anthropogenic Biomes": antBiome,
+  "Mean Annual Temperature": avgtemptile,
+  "Mean Annual Precipitation": avgpretile,
   "Hex bin Map (All Samples)": hexbin_global,
   "Heat Map (Amanita muscaria)": heatmapLayer,
   "All fungi samples": something_markers,
