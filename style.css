@@ -295,5 +295,11 @@ input.sliderValue{
     display: none;
    }
 
+   input[type=range] {
+    right: 20vw;
+    width: 40vw;
+
+   }
+
    
 }
