@@ -277,7 +277,7 @@ input.sliderValue{
   
    }
 
-   .sliderDiv {
+   /* .sliderDiv {
     position: absolute;
     top: 0;
     margin: 0;
@@ -285,6 +285,10 @@ input.sliderValue{
     padding-bottom: 1.5rem;
     width: 50vw;
     left: 18vw;
+   } */
+
+   .sliderDiv {
+    visibility: hidden;
    }
 
    .maplibregl-ctrl-group button {
