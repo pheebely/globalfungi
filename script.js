@@ -428,7 +428,7 @@ const map = new L.map("map", {
   // crs: crs,
   minZoom: 2,
   maxZoom: 15,
-  layers: [positron, something_markers, amus],
+  layers: [positron, something_markers],
 }).setView([31, 8.6], 2.5);
 
 L.control.scale().addTo(map);
